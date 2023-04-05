@@ -4,7 +4,7 @@
 	<?php
 		// Define variables for A, B, and C
 		$a = isset($_POST['a']) ? $_POST['a'] : '';
-		$b = isset($_POST['b']) ? $_POST['b'] : '';
+		$b = isset($_POST['b']) ? $_POST['b'] : '';  
 		$c = isset($_POST['c']) ? $_POST['c'] : '';
 
 		// Define the quadratic formula function
