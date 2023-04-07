@@ -7,7 +7,7 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Mani darbinii :)</h1>
+	<h1>Mani darbiniio :)</h1>
 	<div>
 		<ul>
 			<li><a href ="kvadratfunkcija.php">Kvadratfunkcijas kalkulators</a></li>
