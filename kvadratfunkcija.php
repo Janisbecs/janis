@@ -1,6 +1,6 @@
 <!Doctype html> 
 <html>
-<body>
+<body> 
 	<?php
 		// Define variables for A, B, and C
 		$a = isset($_POST['a']) ? $_POST['a'] : '';
@@ -52,6 +52,7 @@
 	?>
 
 	<h1>Kvadrātfunkcijas kalkulātors</h1>
+	<p>Ax^2 + Bx + C = 0</p>
 
 	<form method="post">
 		<label for="a">A:</label>
@@ -63,14 +64,16 @@
 		<label for="c">C:</label>
 		<input type="text" name="c" id="c" value="<?php echo $c; ?>"><br>
 
-		<input type="submit" value="Aprēķināt">
+		<input type="submit" value="Aprēķināt" style="margin-top: 5px;">
 	</form>
 
+	<a href="index.php"><button style="margin-top: 20px;">Atpakaļ</button></a>
+
 	<?php
-	// Display the result
-	if (isset($result)) {
-		echo "<p>{$result}</p>";
-	}
+		// Display the result
+		if (isset($result)) {
+			echo "<p>{$result}</p>";
+		}
 	?>
 </body>
 </html>

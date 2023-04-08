@@ -7,11 +7,11 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Mani darbiniio :)</h1>
+	<h1>Mani darbinii :)</h1>
 	<div>
 		<ul>
-			<li><a href ="kvadratfunkcija.php">Kvadratfunkcijas kalkulators</a></li>
-			<li>bruh</li>
+			<li><a href = "kvadratfunkcija.php">Kvadratfunkcijas kalkulators</a></li>
+			<li><a href = "kvadrat_uzd.php">Kvadratfunkcijas kalkulators ar uzdevumu</a></li>
 			<li>bruh</li>
 		</ul>  
 	</div>
