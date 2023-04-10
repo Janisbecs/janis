@@ -23,10 +23,8 @@
             $a = $_POST['a'];
             $b = $_POST['b'];
             $c = $_POST['c'];
-
             // Calculate the discriminant
             $discriminant = $b * $b - 4 * $a * $c;
-
             // Check if the roots are correct
             if ($discriminant < 0 || $root1 * $root2 != $c / $a || $root1 + $root2 != -$b / $a) {
                 echo "<p>Nepareizi! Lūdzu mēģiniet vēlreiz!</p>";
@@ -34,6 +32,7 @@
                 echo "<p>Apsveicu! Ievadījāt pareizās saknes!</p>";
             }
         }
+
         // Handle form submission
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             check_roots();
