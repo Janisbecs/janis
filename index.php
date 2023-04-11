@@ -7,12 +7,13 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Mani darbinii :)</h1>
+	<h1>Mani darbini :)</h1>
 	<div>
 		<ul>
 			<li><a href = "kvadratfunkcija.php">Kvadratfunkcijas kalkulators</a></li>
 			<li><a href = "kvadrat_uzd.php">Kvadratfunkcijas kalkulators ar uzdevumu</a></li>
-			<li>bruh</li>
+			<li><a href = "klases_darbs.php">Klases darbs ar PHP</a></li>
+			<li><a href = "sql.php">klases sql darbs</a></li>
 		</ul>  
 	</div>
 
