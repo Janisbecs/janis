@@ -8,24 +8,33 @@
     <p>Ievadiet kvadrātfunkcijas saknes: </p>
 
     <?php
-        // Generate random coefficients for the quadratic equation only if not already set
+        // generē  a b c koef. tikai ja jau nav uzgenereti 
         $a = isset($_POST['a']) ? $_POST['a'] : 1;
-        $b = isset($_POST['b']) ? $_POST['b'] : rand(-10, 10);
-        $c = isset($_POST['c']) ? $_POST['c'] : rand(-10, 10);
-
-        // Display the quadratic equation to the user
+        while(true){
+            $b = isset($_POST['b']) ? $_POST['b'] : rand(-100, 100);
+            $c = isset($_POST['c']) ? $_POST['c'] : rand(-100, 100);
+            $discriminant = $b * $b - 4 * $a * $c;
+            if ($discriminant >= 0) {
+                $root1 = (-1 * $b + sqrt($discriminant)) / (2 * $a);
+                $root2 = (-1 * $b - sqrt($discriminant)) / (2 * $a);
+                if( $root1==(round($root1)) && $root2==(round($root2))){
+                    break;
+                }
+            }
+        }
+        // parada vienadojumu
         echo "<p>$a x^2 + $b x + $c = 0</p>";
 
         function check_roots(){
-            // Retrieve the form data
+            // atgriez formas datus
             $root1 = $_POST['root1'];
             $root2 = $_POST['root2'];
             $a = $_POST['a'];
             $b = $_POST['b'];
             $c = $_POST['c'];
-            // Calculate the discriminant
+            // aprekina diskriminantu
             $discriminant = $b * $b - 4 * $a * $c;
-            // Check if the roots are correct
+            // pārbauda vai saknes ir pareizas
             if ($discriminant < 0 || $root1 * $root2 != $c / $a || $root1 + $root2 != -$b / $a) {
                 echo "<p>Nepareizi! Lūdzu mēģiniet vēlreiz!</p>";
             } else {
@@ -33,7 +42,7 @@
             }
         }
 
-        // Handle form submission
+        // Handle form submissions
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             check_roots();
         }
@@ -86,6 +95,8 @@
                 root2.value = 69;
             }
         }
+
+        var buttons = document.getElementsByClassName("button");
     </script>
 </body>
 </html>
