@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header><h1>Canvas piemērs</h1></header>
+    <section class="hero">
+    <div class="background-image"></div>
+    <div class="hero-content-area">
+        <div class="container"></div>
+            <h1>Riņķis</h1>
+            <canvas id="myCanvas" width="400" height="400" style="border:3px solid white;"></canvas><br>
+            <p>Skaits:<input class="input" type="number" id="skaits"/></p>
+            <p>Rādiuss:<input type="range" min="1" max="190" id="radius"/></p>
+            <button type="button" class="button" onclick="darbs()">Zīmēt</button><br><br><br><br>
+            <a href="index.html" class="btn" style="color:white" >Atpakaļ uz sākumlapu</a>
+        </div>
+    </div>
+    </section>
+    <script src="canvas.js"></script>
+</body>
+</html>

@@ -6,8 +6,16 @@
 
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
+$nameErr = $emailErr = $genderErr = "";
+$name = empty($name) ? "" : $name;
+$email = empty($email) ? "" : $email;
+$gender = empty($gender) ? "" : $gender;
+$comment = empty($comment) ? "" : $comment;
+$website = empty($website) ? "" : $website;
+
+// // define variables and set to empty values
+// $nameErr = $emailErr = $genderErr = "";
+// $name = $email = $gender = $comment = $website = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -39,6 +47,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $gender = test_input($_POST["gender"]);
   }
+
+  // Check if all fields are filled and form has been submitted
+  if (!empty($name) && !empty($email) && !empty($gender)) {
+    // Create connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+
+    // Create connectison
+    $conn = new mysqli($servername, $username, $password);
+
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Use the database
+    $dbname = "01_db";
+    $conn->select_db($dbname);
+
+    // Insert user input values into database
+    $sql = "INSERT INTO user (name, email, website, comment, gender)
+    VALUES ('$name', '$email', '$website', '$comment', '$gender')";
+
+    if ($conn->query($sql) === TRUE) {
+      echo "<br>";
+      echo "Jūs tikāt pievienots!";
+    } else {
+      //echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
+    header("Location: index.php");
+    exit();
+  }
 }
 
 function test_input($data) {
@@ -59,7 +101,7 @@ function test_input($data) {
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
   Website: <input type="text" name="website">
-  <span class="error"><?php echo $websiteErr;?></span>
+  <span class="error"></span>
   <br><br>
   Comment: <textarea name="comment" rows="5" cols="40"></textarea>
   <br><br>
@@ -72,87 +114,6 @@ function test_input($data) {
   <input type="submit" name="submit" value="Submit">  
 </form>
 <a href="index.php"><button style="margin-top: 20px;">Atpakaļ</button></a>
-
-<?php
-echo "<h2>Your Input:</h2>";
-echo $name;
-echo "<br>";
-echo $email;
-echo "<br>";
-echo $website;
-echo "<br>";
-echo $comment;
-echo "<br>";
-echo $gender;
-?>
-
-<?php
-// define variables and set to empty values
-$name = $email = $gender = $comment = $website = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = test_input($_POST["name"]);
-  $email = test_input($_POST["email"]);
-  $website = test_input($_POST["website"]);
-  $comment = test_input($_POST["comment"]);
-  $gender = test_input($_POST["gender"]);
-  
-  // Create connection
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-
-  // Create connection
-  $conn = new mysqli($servername, $username, $password);
-
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  // Create database
-  $dbname = "01_db";
-  $sql = "CREATE DATABASE $dbname";
-  if ($conn->query($sql) === TRUE) {
-    //echo "Database created successfully";
-  } else {
-    //echo "Error creating database: " . $conn->error;
-  }
-
-  // Use the database
-  $conn->select_db($dbname);
-
-  // Create table
-  $sql = "CREATE TABLE user (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    website VARCHAR(50),
-    comment TEXT,
-    gender ENUM('male','female','other') NOT NULL
-  )";
-
-  if ($conn->query($sql) === TRUE) {
-    //echo "Table created successfully";
-  } else {
-    //echo "Error creating table: " . $conn->error;
-  }
-
-  // Insert user input values into database
-  $sql = "INSERT INTO user (name, email, website, comment, gender)
-  VALUES ('$name', '$email', '$website', '$comment', '$gender')";
-
-  if ($conn->query($sql) === TRUE) {
-    echo"<br>";
-    echo "New record created successfully";
-  } else {
-    //echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-
-  $conn->close();
-}
-?>
-
 
 </body>
 </html>
