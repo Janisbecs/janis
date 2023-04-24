@@ -1,40 +1,68 @@
 <!DOCTYPE html>
 <html lang="lv">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <title>BMI kalkulators</title>
-</head>
-<body>
-	<header><h1>BMI kalkulators</h1></header>
+  </head>
+  <body>
+    <header><h1>BMI kalkulators</h1></header>
     <section class="hero">
-    <div class="background-image"></div>
-    <div class="hero-content-area">
-
-    <div class="container">
-    	<div class="panel">
-    		<h2 class="text-center" style="color:white">Ievadi savu svaru un augumu.</h2>
-    			<form>
-    				<div id="weightInput">
-    					<p>Ievadi savu svaru šeit (KG)</p>
-    		     		<input class="input" id="weight" type="number" pattern="[0-9]*" name="a" />
-    				</div>
-    				<div id="heightInput"><br>
-    					<p>Ievadi savu augumu šeit (CM)</p>
-	    				 <input class="input" id="height" type="number" pattern="[0-9]*" name="b"/> 
-    				</div>
-    		    <br><button type="button" class="button" onclick="calculate()">Aprēķināt BMI</button>
-    		</form><br>
-    		<div id="results" class="text-center" style="color:white" >Tavs BMI parādīsies šeit</div><br><br><br>
-            <a href="index.html" class="btn" style="color:white" >Atpakaļ uz sākumlapu</a>
-    	</div>
-    </div>
-    </div>
+      <div class="background-image"></div>
+      <div class="hero-content-area">
+        <div class="container">
+          <div class="panel">
+            <h2 class="text-center" style="color: white">
+              Ievadi savu svaru un augumu.
+            </h2>
+            <form>
+              <div id="weightInput">
+                <p>Ievadi savu svaru šeit (KG)</p>
+                <input
+                  class="input"
+                  id="weight"
+                  type="number"
+                  pattern="[0-9]*"
+                  name="a"
+                />
+              </div>
+              <div id="heightInput">
+                <br />
+                <p>Ievadi savu augumu šeit (CM)</p>
+                <input
+                  class="input"
+                  id="height"
+                  type="number"
+                  pattern="[0-9]*"
+                  name="b"
+                />
+              </div>
+              <br /><button type="button" class="button" onclick="calculate()">
+                Aprēķināt BMI
+              </button>
+            </form>
+            <br />
+            <div id="results" class="text-center" style="color: white">
+              Tavs BMI parādīsies šeit
+            </div>
+            <br /><br /><br />
+            <a href="index.html" class="btn" style="color: white"
+              >Atpakaļ uz sākumlapu</a
+            >
+          </div>
+        </div>
+      </div>
     </section>
-	<script src="kalk.js"></script>
-</body>
+    <script src="kalk.js"></script>
+  </body>
 </html>

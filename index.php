@@ -14,7 +14,7 @@
 			<li><a href = "kvadrat_uzd.php">Kvadratfunkcijas kalkulators ar uzdevumu</a></li>
 			<li><a href = "klases_darbs.php">Skaitlu virkne</a></li>
 			<li><a href = "sql.php">klases sql darbs</a></li>
-			<li><a href = "sql.php">Kursa darbs "Boksa kluba WEB"</a></li>
+			<li><a href = "main_mape/index.html">Kursa darbs "Boksa kluba WEB"</a></li>
 		</ul>  
 	</div>
 
