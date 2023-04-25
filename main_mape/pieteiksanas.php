@@ -37,70 +37,111 @@
             // $nameErr = $emailErr = $genderErr = "";
             // $name = $email = $gender = $comment = $website = "";
 
+            // Connect to MySQL server
+              $servername = "localhost";
+              $username = "root";
+              $password = "";
+
+              $conn = new mysqli($servername, $username, $password);
+
+              if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
+              }
+
+              // Create database
+              $sql = "CREATE DATABASE IF NOT EXISTS box_club";
+              if ($conn->query($sql) === TRUE) {
+                  echo "Database created successfully";
+              } else {
+                  echo "Error creating database: " . $conn->error;
+              }
+
+              // Select the database
+              $conn->select_db("box_club");
+
+              // Create table
+              $sql = "CREATE TABLE IF NOT EXISTS all_guys (
+                      id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                      name VARCHAR(50) NOT NULL,
+                      surname VARCHAR(50) NOT NULL,
+                      age INT(50) NOT NULL,
+                      comment VARCHAR(200),
+                      gender VARCHAR(10) NOT NULL
+                  )";
+
+              if ($conn->query($sql) === TRUE) {
+                  echo "Table created successfully";
+              } else {
+                  echo "Error creating table: " . $conn->error;
+              }
+
+              //$conn->close();
+
+
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["name"])) {
-                $nameErr = "Name is required";
-            } else {
-                $name = test_input($_POST["name"]);
-            }
-            
-            if (empty($_POST["email"])) {
-                $emailErr = "Email is required";
-            } else {
-                $email = test_input($_POST["email"]);
-            }
-                
-            if (empty($_POST["website"])) {
-                $website = "";
-            } else {
-                $website = test_input($_POST["website"]);
-            }
+              if (empty($_POST["name"])) {
+                  $nameErr = "Name is required";
+              } else {
+                  $name = test_input($_POST["name"]);
+              }
+              
+              if (empty($_POST["email"])) {
+                  $emailErr = "Email is required";
+              } else {
+                  $email = test_input($_POST["email"]);
+              }
+                  
+              if (empty($_POST["website"])) {
+                  $website = "Age is required";
+              } else {
+                  $website = test_input($_POST["website"]);
+              }
 
-            if (empty($_POST["comment"])) {
-                $comment = "";
-            } else {
-                $comment = test_input($_POST["comment"]);
-            }
+              if (empty($_POST["comment"])) {
+                  $comment = "";
+              } else {
+                  $comment = test_input($_POST["comment"]);
+              }
 
-            if (empty($_POST["gender"])) {
-                $genderErr = "Gender is required";
-            } else {
-                $gender = test_input($_POST["gender"]);
-            }
+              if (empty($_POST["gender"])) {
+                  $genderErr = "Gender is required";
+              } else {
+                  $gender = test_input($_POST["gender"]);
+              }
 
-            // Check if all fields are filled and form has been submitted
-            if (!empty($name) && !empty($email) && !empty($gender)) {
-                // Create connection
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
+              // Check if all fields are filled and form has been submitted
+              if (!empty($name) && !empty($email) && !empty($gender)&& !empty($website)) {
+                  // Create connection
+                  //$servername = "localhost";
+                  //$username = "root";
+                  //$password = "";
 
-                // Create connectison
-                $conn = new mysqli($servername, $username, $password);
+                  // Create connectison
+                  //$conn = new mysqli($servername, $username, $password);
 
-                // Check connection
-                if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-                }
+                  // Check connection
+                  if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
+                  }
 
-                // Use the database
-                $dbname = "01_db";
-                $conn->select_db($dbname);
+                  // Use the database
+                  $dbname = "box_club";
+                  $conn->select_db($dbname);
 
-                // Insert user input values into database
-                $sql = "INSERT INTO user (name, email, website, comment, gender)
-                VALUES ('$name', '$email', '$website', '$comment', '$gender')";
+                  // Insert user input values into database
+                  $sql = "INSERT INTO all_guys (name, surname, age, comment, gender)
+                  VALUES ('$name', '$email', '$website', '$comment', '$gender')";
 
-                if ($conn->query($sql) === TRUE) {
-                echo "<br>";
-                echo "Jūs tikāt pievienots!";
-                } else {
-                //echo "Error: " . $sql . "<br>" . $conn->error;
-                }
-                $conn->close();
-                header("Location: index.html");
-                exit();
-            }
+                  if ($conn->query($sql) === TRUE) {
+                  echo "<br>";
+                  echo "Jūs tikāt pievienots!";
+                  } else {
+                  //echo "Error: " . $sql . "<br>" . $conn->error;
+                  }
+                  $conn->close();
+                  header("Location: index.html");
+                  exit();
+              }
             }
 
             function test_input($data) {
@@ -121,7 +162,7 @@
                 <span class="error">* <?php echo $emailErr;?></span>
                 <br><br>
                 Vecums: <input type="number" name="website">
-                <span class="error"></span>
+                <span class="error">*</span>
                 <br><br>
                 Vieta piezīmēm: <textarea name="comment" rows="2" cols="40"></textarea>
                 <br><br>
