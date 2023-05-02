@@ -50,7 +50,7 @@
 
               // Create database
               $sql = "CREATE DATABASE IF NOT EXISTS box_club";
-              mysqli_query($conn, "ALTER DATABASE box__club CHARACTER SET utf8 COLLATE utf8_latvian_ci;");
+              mysqli_query($conn, "ALTER DATABASE box_club CHARACTER SET utf8 COLLATE utf8_latvian_ci;");
 
               if ($conn->query($sql) === TRUE) {
                   //echo "Database created successfully";
