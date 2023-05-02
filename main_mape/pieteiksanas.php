@@ -51,7 +51,7 @@
               // Create database
               $sql = "CREATE DATABASE IF NOT EXISTS box_club";
               if ($conn->query($sql) === TRUE) {
-                  echo "Database created successfully";
+                  //echo "Database created successfully";
               } else {
                   echo "Error creating database: " . $conn->error;
               }
@@ -70,7 +70,7 @@
                   )";
 
               if ($conn->query($sql) === TRUE) {
-                  echo "Table created successfully";
+                  //echo "Table created successfully";
               } else {
                   echo "Error creating table: " . $conn->error;
               }
@@ -175,8 +175,6 @@
                 <button type="submit" class="button" name="submit" value="Pieteikties">Pieteikties</button>
             </form>
           
-
-        
           <p class="text-center" style="color: white">Sekmīgas pieteikšanās gadījumā tiksiet novirzīts uz sākumlapu.</p>
           <p class="text-center" style="color: white">Ja spiežot pogu PIETEIKTIES jūs nenovirza uz sākumlapu, pārbaudiet aizpildītos lauciņus!</p>
           <a href="index.html" class="btn" style="color: white">Atpakaļ uz sākumlapu</a>
