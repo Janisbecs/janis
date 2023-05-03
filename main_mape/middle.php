@@ -82,7 +82,7 @@
                 $conn->close();
             ?>
 
-            <br><br><a href="index.html" class="btn" style="color: white">Atpakaļ uz sākumlapu</a>
+            <br><br><a href="home_loged.html" class="btn" style="color: white">Atpakaļ</a>
         </div>
       </div>
     </section>

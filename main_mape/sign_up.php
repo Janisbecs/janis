@@ -72,10 +72,11 @@
                   // execute the statement
                   if ($stmt->execute() === TRUE) {
                       // data inserted successfully
-                      echo "Data inserted successfully";
+                      //echo "Data inserted successfully";
+                      header("Location: home_loged.html");
                   } else {
                       // handle error
-                      echo "Error inserting data: " . $stmt->error;
+                      //echo "Error inserting data: " . $stmt->error;
                   }
 
                   // close the statement and connection

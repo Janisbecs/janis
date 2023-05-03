@@ -179,7 +179,7 @@
           
           <p class="text-center" style="color: white">Sekmīgas pieteikšanās gadījumā tiksiet novirzīts uz sākumlapu.</p>
           <p class="text-center" style="color: white">Ja spiežot pogu PIETEIKTIES jūs nenovirza uz sākumlapu, pārbaudiet aizpildītos lauciņus!</p>
-          <a href="index.html" class="btn" style="color: white">Atpakaļ uz sākumlapu</a>
+          <a href="home_loged.html" class="btn" style="color: white">Atpakaļ</a>
         </div>
       </div>
     </section>

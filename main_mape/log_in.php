@@ -65,10 +65,11 @@
                 $stmt->execute();
                 $result = $stmt->get_result();
                 if($result->num_rows == 1){
-                    echo "You have successfully logged in";
+                    //echo "You have successfully logged in";
+                    header("Location: home_loged.html");
                     exit();
                 } else {
-                    echo "You have entered an incorrect password";
+                    //echo "You have entered an incorrect password";
                     exit();
                 }      
             }
