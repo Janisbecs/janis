@@ -75,6 +75,7 @@
                     exit();
                 } else {
                     //echo "You have entered an incorrect password";
+                    header("Location: log_in.php");
                     exit();
                 }      
             }
