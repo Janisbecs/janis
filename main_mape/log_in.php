@@ -81,12 +81,12 @@
             ?>
             <form method="POST">
                 <div class="form-input">
-                    <input type="text" name="username" placeholder="Enter the User Name"/>	
+                    <input type="text" name="username" placeholder="Lietotājvārds"/>	
                 </div>
                 <div class="form-input">
-                    <input type="password" name="password" placeholder="Password"/>
+                    <input type="password" name="password" placeholder="Parole"/>
                 </div>
-                <input type="submit" value="LOGIN" class="btn-login"/>
+                <input type="submit" value="Ienākt" class="btn-login"/>
             </form>
             
             <br><br><a href="index.html" class="btn" style="color: white">Atpakaļ uz sākumlapu</a>

@@ -28,43 +28,46 @@
             $password = "";
             $dbname = "box_club";
             $conn = new mysqli($servername, $username, $password, $dbname);
-
+            
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-
+            
             $user_id = $_SESSION['user_id'];
-
+            
             // If the form has been submitted, update the user's profile
             if (isset($_POST['submit'])) {
-                $name = $_POST['name'];
-                $surname = $_POST['surname'];
-                $age = $_POST['age'];
-                $comment = $_POST['comment'];
-                $gender = $_POST['gender'];
-
-                $sql = "UPDATE all_guys SET name='$name', surname='$surname', age='$age', comment='$comment', gender='$gender' WHERE user_id='$user_id'";
-                if ($conn->query($sql) === TRUE) {
-                    echo "Profils sekmīgi rediģēts";
-                    echo "<br>";
-                    echo "<br>";
-                } else {
-                    echo "Kļūda rediģējot profilu" . $conn->error;
-                    echo "<br>";
+                $name = isset($_POST['name']) ? $_POST['name'] : '';
+                $surname = isset($_POST['surname']) ? $_POST['surname'] : '';
+                $age = isset($_POST['age']) ? $_POST['age'] : '';
+                $comment = isset($_POST['comment']) ? $_POST['comment'] : '';
+                $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+            
+                // Validate input fields
+                if (!empty($name) && !empty($surname) && !empty($age) && !empty($comment) && !empty($gender)) {
+                    $sql = "UPDATE all_guys SET name='$name', surname='$surname', age='$age', comment='$comment', gender='$gender' WHERE user_id='$user_id'";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "Profils sekmīgi rediģēts";
+                        echo "<br>";
+                        echo "<br>";
+                    } else {
+                        echo "Kļūda rediģējot profilu" . $conn->error;
+                        echo "<br>";
+                    }
                 }
             }
-
+            
             // Retrieve username from loginform table where user_id matches $_SESSION['user_id']
             $sql = "SELECT user FROM loginform WHERE id = '$user_id'";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             $username = $row['user'];
-
+            
             // Retrieve all values from all_guys table where user_id matches $_SESSION['user_id']
             $sql = "SELECT * FROM all_guys WHERE user_id = '$user_id'";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
-
+            
             // Display the data in a form for editing
             echo "<form method='post'>";
             echo "<label for='username'>Lietotājvārds:</label>";

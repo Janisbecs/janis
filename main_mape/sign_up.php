@@ -73,6 +73,9 @@
                   if ($stmt->execute() === TRUE) {
                       // data inserted successfully
                       //echo "Data inserted successfully";
+                      $user_id = $stmt->insert_id;
+                      session_start();
+                      $_SESSION['user_id'] = $user_id;
                       header("Location: home_loged.html");
                   } else {
                       // handle error
@@ -87,13 +90,13 @@
             ?>
             <form method="POST" action="">
                 <div class="form-input">
-                    <input type="text" name="username" placeholder="Enter the User Name"/>	
+                    <input type="text" name="username" placeholder="Lietotājvārds"/>	
                 </div>
                 <div class="form-input">
-                    <input type="password" name="password" placeholder="password"/><br/>
-                    <input type="password" name="password_confirm" placeholder="password again"/>
+                    <input type="password" name="password" placeholder="Parole"/><br/>
+                    <input type="password" name="password_confirm" placeholder="Parole vēlreiz"/>
                 </div>
-                <input type="submit" value="LOGIN" class="btn-login"/>
+                <input type="submit" value="Izveidot" class="btn-login"/>
             </form>
             
             <br><br><a href="index.html" class="btn" style="color: white">Atpakaļ uz sākumlapu</a>

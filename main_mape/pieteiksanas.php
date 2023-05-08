@@ -137,7 +137,7 @@
                   $result = $conn->query($sql);
                   if ($result->num_rows > 0) {
                       // User ID already exists, display error message or redirect back to form
-                      echo "User ID already exists!";
+                      echo "Jūs jau esiet reģistrējies!";
                   } else {
                       $sql = "INSERT INTO all_guys (name, surname, age, comment, gender, user_id)
                       VALUES ('$name', '$email', '$website', '$comment', '$gender', '$user_id')";
