@@ -133,18 +133,25 @@
                   session_start();
                   $user_id = $_SESSION['user_id'];
 
-                  $sql = "INSERT INTO all_guys (name, surname, age, comment, gender, user_id)
-                    VALUES ('$name', '$email', '$website', '$comment', '$gender', '$user_id')";
-
-                  if ($conn->query($sql) === TRUE) {
-                  echo "<br>";
-                  echo "Jūs tikāt pievienots!";
+                  $sql = "SELECT * FROM all_guys WHERE user_id = '$user_id'";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                      // User ID already exists, display error message or redirect back to form
+                      echo "User ID already exists!";
                   } else {
-                  //echo "Error: " . $sql . "<br>" . $conn->error;
+                      $sql = "INSERT INTO all_guys (name, surname, age, comment, gender, user_id)
+                      VALUES ('$name', '$email', '$website', '$comment', '$gender', '$user_id')";
+
+                      if ($conn->query($sql) === TRUE) {
+                        echo "<br>";
+                        echo "Jūs tikāt pievienots!";
+                      } else {
+                        //echo "Error: " . $sql . "<br>" . $conn->error;
+                      }
+                      $conn->close();
+                      header("Location: home_loged.html");
+                      exit();
                   }
-                  $conn->close();
-                  header("Location: home_loged.html");
-                  exit();
               }
             }
 
