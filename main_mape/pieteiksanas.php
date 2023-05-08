@@ -60,14 +60,15 @@
               $conn->select_db("box_club");
 
               // Create table
-              $sql = "CREATE TABLE IF NOT EXISTS all_guys (
-                      id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                      name VARCHAR(50) NOT NULL,
-                      surname VARCHAR(50) NOT NULL,
-                      age INT(50) NOT NULL,
-                      comment VARCHAR(200),
-                      gender VARCHAR(10) NOT NULL
-                  )";
+              $sql = "CREATE TABLE IF NOT EXISTS all_guys_2 (
+                id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(50) NOT NULL,
+                surname VARCHAR(50) NOT NULL,
+                age INT(50) NOT NULL,
+                comment VARCHAR(200),
+                gender VARCHAR(10) NOT NULL,
+                user_id INT(6) NOT NULL
+              )";
 
               if ($conn->query($sql) === TRUE) {
                   //echo "Table created successfully";
@@ -129,8 +130,11 @@
                   $conn->select_db($dbname);
 
                   // Insert user input values into database
-                  $sql = "INSERT INTO all_guys (name, surname, age, comment, gender)
-                  VALUES ('$name', '$email', '$website', '$comment', '$gender')";
+                  session_start();
+                  $user_id = $_SESSION['user_id'];
+
+                  $sql = "INSERT INTO all_guys_2 (name, surname, age, comment, gender, user_id)
+                    VALUES ('$name', '$email', '$website', '$comment', '$gender', '$user_id')";
 
                   if ($conn->query($sql) === TRUE) {
                   echo "<br>";

@@ -66,6 +66,11 @@
                 $result = $stmt->get_result();
                 if($result->num_rows == 1){
                     //echo "You have successfully logged in";
+                    session_start();
+                    $row = $result->fetch_assoc();
+                    $_SESSION['user_id'] = $row['id'];
+                    $user_id = $_SESSION['user_id'];
+                    //echo $user_id;
                     header("Location: home_loged.html");
                     exit();
                 } else {
