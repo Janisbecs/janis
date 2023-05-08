@@ -21,21 +21,54 @@
       <div class="background-image"></div>
       <div class="hero-content-area">
         <div class="container">
+            <?php 
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "box_club";
+                $conn = new mysqli($servername, $username, $password, $dbname);
 
-        <?php 
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
 
-            $conn = new mysqli($servername, $username, $password);
+                // Retrieve username from loginform table where user_id matches $_SESSION['user_id']
+                session_start();
+                $user_id = $_SESSION['user_id'];
+                $sql = "SELECT user FROM loginform WHERE id = '$user_id'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $username = $row['user'];
 
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+                // Retrieve all values from all_guys table where user_id matches $_SESSION['user_id']
+                $sql = "SELECT * FROM all_guys WHERE user_id = '$user_id'";
+                $result = $conn->query($sql);
 
-            
+                // Display the data in a table
+                echo "<table border='1'>
+                    <tr>
+                        <th>Lietotājvārds</th>
+                        <th>Vārds</th>
+                        <th>Uzvārds</th>
+                        <th>Vecums</th>
+                        <th>Komentāri</th>
+                        <th>Dzimums</th>
+                    </tr>";
+
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $username . "</td>";
+                    echo "<td>" . $row['name'] . "</td>";
+                    echo "<td>" . $row['surname'] . "</td>";
+                    echo "<td>" . $row['age'] . "</td>";
+                    echo "<td>" . $row['comment'] . "</td>";
+                    echo "<td>" . $row['gender'] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+
+                $conn->close();
             ?>
-
             <br><br><a href="home_loged.html" class="btn" style="color: white">Atpakaļ</a>
         </div>
       </div>
