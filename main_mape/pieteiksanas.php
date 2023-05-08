@@ -21,8 +21,6 @@
       <div class="background-image"></div>
       <div class="hero-content-area">
         <div class="container">
-            
-
 
             <?php
             // define variables and set to empty values
@@ -141,7 +139,7 @@
                   //echo "Error: " . $sql . "<br>" . $conn->error;
                   }
                   $conn->close();
-                  header("Location: index.html");
+                  header("Location: home_loged.html");
                   exit();
               }
             }
