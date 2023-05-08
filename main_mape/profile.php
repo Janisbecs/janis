@@ -21,53 +21,68 @@
       <div class="background-image"></div>
       <div class="hero-content-area">
         <div class="container">
-            <?php 
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "box_club";
-                $conn = new mysqli($servername, $username, $password, $dbname);
+        <?php
+            session_start();
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "box_club";
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $user_id = $_SESSION['user_id'];
+
+            // If the form has been submitted, update the user's profile
+            if (isset($_POST['submit'])) {
+                $name = $_POST['name'];
+                $surname = $_POST['surname'];
+                $age = $_POST['age'];
+                $comment = $_POST['comment'];
+                $gender = $_POST['gender'];
+
+                $sql = "UPDATE all_guys SET name='$name', surname='$surname', age='$age', comment='$comment', gender='$gender' WHERE user_id='$user_id'";
+                if ($conn->query($sql) === TRUE) {
+                    echo "Profils sekmīgi rediģēts";
+                    echo "<br>";
+                    echo "<br>";
+                } else {
+                    echo "Kļūda rediģējot profilu" . $conn->error;
+                    echo "<br>";
                 }
+            }
 
-                // Retrieve username from loginform table where user_id matches $_SESSION['user_id']
-                session_start();
-                $user_id = $_SESSION['user_id'];
-                $sql = "SELECT user FROM loginform WHERE id = '$user_id'";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-                $username = $row['user'];
+            // Retrieve username from loginform table where user_id matches $_SESSION['user_id']
+            $sql = "SELECT user FROM loginform WHERE id = '$user_id'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $username = $row['user'];
 
-                // Retrieve all values from all_guys table where user_id matches $_SESSION['user_id']
-                $sql = "SELECT * FROM all_guys WHERE user_id = '$user_id'";
-                $result = $conn->query($sql);
+            // Retrieve all values from all_guys table where user_id matches $_SESSION['user_id']
+            $sql = "SELECT * FROM all_guys WHERE user_id = '$user_id'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
 
-                // Display the data in a table
-                echo "<table border='1'>
-                    <tr>
-                        <th>Lietotājvārds</th>
-                        <th>Vārds</th>
-                        <th>Uzvārds</th>
-                        <th>Vecums</th>
-                        <th>Komentāri</th>
-                        <th>Dzimums</th>
-                    </tr>";
+            // Display the data in a form for editing
+            echo "<form method='post'>";
+            echo "<label for='username'>Lietotājvārds:</label>";
+            echo "<input type='text' name='username' value='$username' disabled><br><br>";
+            echo "<label for='name'>Vārds:</label>";
+            echo "<input type='text' name='name' value='" . $row['name'] . "'><br><br>";
+            echo "<label for='surname'>Uzvārds:</label>";
+            echo "<input type='text' name='surname' value='" . $row['surname'] . "'><br><br>";
+            echo "<label for='age'>Vecums:</label>";
+            echo "<input type='text' name='age' value='" . $row['age'] . "'><br><br>";
+            echo "<label for='comment'>Komentāri:</label>";
+            echo "<input type='text' name='comment' value='" . $row['comment'] . "'><br><br>";
+            echo "<label for='gender'>Dzimums:</label>";
+            echo "<input type='text' name='gender' value='" . $row['gender'] . "'><br><br>";
+            echo "<input type='submit' name='submit' value='Saglabāt izmaiņas'>";
+            echo "</form>";
 
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $username . "</td>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['surname'] . "</td>";
-                    echo "<td>" . $row['age'] . "</td>";
-                    echo "<td>" . $row['comment'] . "</td>";
-                    echo "<td>" . $row['gender'] . "</td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-
-                $conn->close();
+            $conn->close();
             ?>
             <br><br><a href="home_loged.html" class="btn" style="color: white">Atpakaļ</a>
         </div>
