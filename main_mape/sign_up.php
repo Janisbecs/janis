@@ -57,7 +57,7 @@
                  echo "Error dropping table: " . $conn->error;
              }
 
-            
+             
             if(isset($_POST['username'])){
               $uname = $_POST['username'];
               $password = $_POST['password'];
