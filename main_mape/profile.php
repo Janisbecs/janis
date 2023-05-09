@@ -34,7 +34,7 @@
             }
             
             $user_id = $_SESSION['user_id'];
-            
+
             // If the form has been submitted, update the user's profile
             if (isset($_POST['submit'])) {
                 $name = isset($_POST['name']) ? $_POST['name'] : '';
@@ -50,6 +50,8 @@
                         echo "Profils sekmīgi rediģēts";
                         echo "<br>";
                         echo "<br>";
+                        header("Location: profile.php");
+                        exit();
                     } else {
                         echo "Kļūda rediģējot profilu" . $conn->error;
                         echo "<br>";
@@ -84,9 +86,28 @@
             echo "<input type='text' name='gender' value='" . $row['gender'] . "'><br><br>";
             echo "<input type='submit' name='submit' value='Saglabāt izmaiņas'>";
             echo "</form>";
-
+            
+            if (isset($_POST['delete'])) {
+              $sql = "DELETE FROM all_guys WHERE user_id='$user_id'";
+              if ($conn->query($sql) === TRUE) {
+                  echo "Profils sekmīgi dzēsts";
+                  echo "<br>";
+                  echo "<br>";
+                  $sql = "UPDATE all_guys SET name='$name', surname='$surname', age='$age', comment='$comment', gender='$gender' WHERE user_id='$user_id'";
+                  header("Location: profile.php");
+                } else {
+                  echo "Kļūda dzēšot profilu" . $conn->error;
+                  echo "<br>";
+              }
+            }
             $conn->close();
             ?>
+
+            <form method='post'>
+              <input type='hidden' name='delete' value='1'>
+              <input type='submit' name='delete_profile' value='Dzēst profilu'>
+            </form>
+
             <br><br><a href="home_loged.html" class="btn" style="color: white">Atpakaļ</a>
         </div>
       </div>
